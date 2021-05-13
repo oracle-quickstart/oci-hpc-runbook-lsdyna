@@ -1,0 +1,9 @@
+general {
+ nodump nobeamout dboutonly
+ nofull
+}
+decomposition {
+ file decomposition
+ rcblog rcblog
+}
+dir { global /mnt/nfs-share/LSDYNA/one_global_dir local /mnt/localdisk/tmp }
