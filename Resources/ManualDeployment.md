@@ -1,21 +1,8 @@
 
 # <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/master/lsdyna_logo.png" height="60"> LS-DYNA Runbook
 
-# Introduction
-
-LS-DYNA is a general-purpose finite element program capable of simulating complex real world problems. It is used by the automobile, aerospace, construction, military, manufacturing, and bioengineering industries. [LS-DYNA Website](https://www.lstc.com/products/ls-dyna)
-
-This Runbook will take you through the process of deploying an LS Dyna cluster on Oracle Cloud with low latency networking between the compute nodes. Running LS Dyna on Oracle Cloud is quite straightforward, follow along this guide for all the tips and tricks.
-
-<p align="center">
-<img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/master/3cars.jpg" height="200" >
- </p>
  
-**Table of Contents**
-- [Introduction](#introduction)
-- [Architecture](#architecture)
-  - [Baseline Infrastructure](#baseline-infrastructure)
-  - [Optional Infrastructure](#optional-infrastructure)
+## Table of Contents
 - [Launch Cluster Network Steps](#launch-cluster-network-steps)
   - [Creation of Cluster Network through Marketplace](#creation-of-cluster-network-through-marketplace)
   - [Creation of Cluster Network through Manual Configuration](#creation-of-cluster-network-through-manual-configuration)
@@ -31,38 +18,6 @@ This Runbook will take you through the process of deploying an LS Dyna cluster o
 - [Running LS-DYNA](#running-ls-dyna)
   - [Special case](#special-case)
 
-# Architecture
-The architecture for this runbook is as follow, we have one small machine (bastion) that you will connect into. The compute nodes will be on a separate private network linked with RDMA RoCE v2 networking. The bastion will be accesible through SSH from anyone with the key (or VNC if you decide to enable it). Compute nodes will only be accessible through the bastion inside the network. This is made possible with 1 Virtual Cloud Network with 2 subnets, one public and one private.
-
-## Baseline Infrastructure
-Cluster Networks are supported in the following regions.  In each case, we recommend using the baseline reference architecture and then adjusting it, as required, to meet your specific requirements: 
-* VCN
-  *	Public Subnet, Security List, Route Table
-  *	Private Subnet, Security List, Route Table
-  *	Internet Gateway
-  *	NAT Gateway
-*	Compute Nodes
-  *	Bastion Host in a Public Subnet
-  *	HPC Compute Nodes in Private Subnet
-
-![](https://github.com/oci-hpc/oci-hpc-runbook-shared/blob/master/images/arch.png "Architecture for Running StarCCM+ in OCI")
-
-The above baseline infrastructure provides the following specifications:
--	Networking
-    -	1 x 100 Gbps RDMA over converged ethernet (ROCE) v2
-    -	Latency as low as 1.5 µs
--	HPC Compute Nodes (BM.HPC2.36)
-    -	6.4 TB Local NVME SSD storage per node
-    -	36 cores per node
-    -	384 GB memory per node
-
-## Optional Infrastructure
-### Storage
-On top of the NVME SSD storage that comes with the HPC shape, you can also attach block volumes at 32k IOPS per volume, backed by Oracle’s highest performance SLA.  If you are using our solutions to launch the infrastructure, an nfs-share is installed by default on the NVME SSD storage in /mnt.  You can also install your own parallel file system on top of either the NVME SSD storage or block storage, depending on your performance requirements.
-### Visualizer Node
-You can create a visualizer node, such as a GPU VM or BM machine, depending on your requirements. This visualizer node can be your bastion host or else it can be separate.  Depending on the security requirements for the workload, the visualizer node can be placed in the private or public subnet.
-
-
 # Launch Cluster Network Steps 
 There are many ways to launch an HPC Cluster Network, this solutions guide will cover two different methods:
 *	Via Marketplace
@@ -73,16 +28,16 @@ Depending on your OS, you will want to go with a specific method. If the HPC Clu
 Marketplace holds applications and images that can be deployed with our infrastructure.  For customers that want to use Oracle Linux, an HPC Cluster Network image is available and can be launched from directly within marketplace.
 We suggest launching the [CFD Ready Cluster](https://cloudmarketplace.oracle.com/marketplace/en_US/listing/75645211) that will contain librairies needed for CFD.
 
-1.	Within marketplace, select **Get App** at the top right.
-2.	Select the OCI Region then click **Sign In**.
+1.	Within marketplace, select <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/main/images/get_app.png" height="30"> at the top right.
+2.	Select the OCI Region then click <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/main/images/sign_in.png" height="30">.
 3.	Verify the version of the HPC Cluster image and then select the *Compartment* where the cluster will be launched. Accept the terms and conditions, then **Launch Stack**.
 4.	Fill out the remaing details of the stack:
-    1.	Select the desired **AD** for the compute shapes and the bastion.
-    2.	Copy-paste your public **ssh key**
-    3.	Type in the number of **Compute instances** for the cluster
+    1.	Select the desired <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/main/images/ad.png" height="30"> for the compute shapes and the bastion.
+    2.	Copy-paste your public <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/main/images/ssh_key.png" height="30">
+    3.	Type in the number of <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/main/images/compute_instances.png" height="30"> for the cluster
     4. Uncheck Install OpenFOAM
     5. If you need more than 6TB of Shared disk space, check GlusterFS and select how many servers you would need. (6TB per server)
-5.	Click **Create**.
+5.	Click <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/main/images/create.png" height="30">.
 6.	Navigate to *Terraform Actions* then click **Apply**. This will launch the CN provisioning.
 7.	Wait until the job shows ‘Succeeded’ then navigate to **Outputs** to obtain the bastion and compute node private IP’s. 
 
