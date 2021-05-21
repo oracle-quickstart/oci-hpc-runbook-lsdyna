@@ -28,16 +28,16 @@ Depending on your OS, you will want to go with a specific method. If the HPC Clu
 Marketplace holds applications and images that can be deployed with our infrastructure.  For customers that want to use Oracle Linux, an HPC Cluster Network image is available and can be launched from directly within marketplace.
 We suggest launching the [CFD Ready Cluster](https://cloudmarketplace.oracle.com/marketplace/en_US/listing/75645211) that will contain librairies needed for CFD.
 
-1.	Within marketplace, select <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/main/images/get_app.png" height="30"> at the top right.
-2.	Select the OCI Region then click <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/main/images/sign_in.png" height="30">.
+1.	Within marketplace, select <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/get_app.png" height="30"> at the top right.
+2.	Select the OCI Region then click <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/sign_in.png" height="30">.
 3.	Verify the version of the HPC Cluster image and then select the *Compartment* where the cluster will be launched. Accept the terms and conditions, then **Launch Stack**.
 4.	Fill out the remaing details of the stack:
-    1.	Select the desired <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/main/images/ad.png" height="30"> for the compute shapes and the bastion.
-    2.	Copy-paste your public <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/main/images/ssh_key.png" height="30">
-    3.	Type in the number of <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/main/images/compute_instances.png" height="30"> for the cluster
+    1.	Select the desired Availability Domain <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/ad.png" height="47"> for the compute shapes and the bastion.
+    2.	Copy-paste your public SSH key <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/ssh_key.png" height="41">
+    3.	Type in the number of compute instances <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/compute_instances.png" height="39"> for the cluster
     4. Uncheck Install OpenFOAM
     5. If you need more than 6TB of Shared disk space, check GlusterFS and select how many servers you would need. (6TB per server)
-5.	Click <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/main/images/create.png" height="30">.
+5.	Click <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/create.png" height="30">.
 6.	Navigate to *Terraform Actions* then click **Apply**. This will launch the CN provisioning.
 7.	Wait until the job shows ‘Succeeded’ then navigate to **Outputs** to obtain the bastion and compute node private IP’s. 
 
@@ -45,27 +45,27 @@ We suggest launching the [CFD Ready Cluster](https://cloudmarketplace.oracle.com
 ## Creation of Cluster Network through Manual Configuration
 Marketplace holds applications and images that can be deployed with our infrastructure.  For customers that want to use Oracle Linux, you can manually create a cluster network as follows:
 1.	Select the OCI Region on the top right.
-2.	In the main menu, select **Networking** and **Virtual Cloud Network**
-3.	Click on Start VCN Wizard, and select **VCN with Internet Connectivity**
-4.	Choose and name, the right compartment, and use 172.16.0.0/16 as **VCN CIDR**, 172.16.0.0/24 for Public Subnet and 172.16.1.0/24 for Private Subnet
-5.	In the main menu, select **Compute**, **Instances**, then **Create Instance**
-6.	Change the Image and select the **Oracle Image** tab, select **Oracle Linux 7 - HPC Cluster Networking Image**
-7.	Select the **Availability Domain** in which you can spin up a BM.HPC2.36 instance
-8.	Change the **shape** to BM.HPC2.36 under Bare Metal and Specialty
+2.	In the main menu, select <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/networking.png" height="28"> and <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/vcn.png" height="30">
+3.	Click on Start VCN Wizard, and select <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/vcn_with_internet_connectivity.png" height="38">
+4.	Choose and name, the right compartment, and use 172.16.0.0/16 as <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/cidr_block.png" height="40">, 172.16.0.0/24 for <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/public_subnet.png" height="40"> and 172.16.1.0/24 for <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/private_subnet.png" height="40">
+5.	In the main menu, select <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/compute.png" height="31">, <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/instances.png" height="30">, then <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/create_instances.png" height="31">
+6.	Change the Image <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/change_image.png" height="30"> and select the <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/oracle_images.png" height="38"> tab, select <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/oracle_linux_7.png" height="32">
+7.	Select the <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/availability_domain.png" height="50"> in which you can spin up a BM.HPC2.36 instance
+8.	Change the <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/shape.png" height="60"> to BM.HPC2.36 under Bare Metal and Specialty
 9.	Select the VCN and the public subnet you created. 
 10.	Add a public key to connect to the instance. This key will be used on all compute instances. 
-11.	Once the machine is up, click on the created instance. Under **More Actions**, select **Create Instance Configuration**. You can now **terminate** the instance under **More Actions**. 
-12.	In the main menu, select **Compute**, then **Cluster Networks**
-13.	Click **Create Cluster Network** and fill in all the options. Use the VCN, private subnet and instance configuration that you just created. Select the AD in which you can launch BM.HPC2.36 instances. 
+11.	Once the machine is up, click on the created instance. Under <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/more_actions.png" height="30">, select <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/create_instance_configuration.png" height="25">. You can now <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/terminate.png" height="28"> the instance under <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/more_actions.png" height="30">. 
+12.	In the main menu, select <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/compute.png" height="25">, then <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/cluster_networks.png" height="25">
+13.	Click <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/create_cluster_network.png" height="25"> and fill in all the options. Use the VCN, private subnet and instance configuration that you just created. Select the AD in which you can launch BM.HPC2.36 instances. 
 14.	Launch the cluster network. 
-15.	While it is loading, create another instance under **Main Menu**, **Compute** and **Instances**.
+15.	While it is loading, create another instance under <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/main_menu.png" height="25">, <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/compute.png" height="25"> and <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/instances.png" height="25">.
 16.	Put it in the public subnet that was just created, using your public key and shape should be VM.Standard2.1 or similar. This will be the bastion that we will use to connect to the cluster. 
 17.	SCP the key to the cluster on the bastion at /home/opc/.ssh/cluster_key and copy it also to /home/opc/.ssh/id_rsa
 19.	Install the Provisioning Tool on the bastion via the following command:
 ```
 sudo rpm -Uvh https://objectstorage.us-ashburn-1.oraclecloud.com/n/hpc/b/rpms/o/oci-hpc-provision-20190905-63.7.2.x86_64.rpm
 ```
-18.	Navigate to **Compute** then **Instance Pools** in the Console and collect all the IP addresses for the cluster network pool. Or use this command on the bastion if you have nothing else running on your private subnet. 
+18.	Navigate to <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/compute.png" height="25"> then <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/instance_pools.png" height="25"> in the Console and collect all the IP addresses for the cluster network pool. Or use this command on the bastion if you have nothing else running on your private subnet. 
 ```
 for i in `nmap -sL Private_Subnet_CIDR | grep "Nmap scan report for" | grep ")" | awk '{print $6}'`;do echo ${i:1:-1} >> /tmp/ips; done
 ```
@@ -76,7 +76,7 @@ ips=`cat /tmp/ips`
 ```
 
 # Access your Cluster 
-The public IP address of the bastion can be found on the lower left menu under Outputs. If you navigate to your instances in the main menu, you will also find your bastion instance as well as the public IP. 
+The public IP address of the bastion can be found on the lower left menu under <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/outputs.png" height="35">. If you navigate to your instances in the main menu, you will also find your bastion instance as well as the public IP. 
 
 The Private Key to access the machines can also be found there. Copy the text in a file on your machine, let's say/home/user/key:
 ```
