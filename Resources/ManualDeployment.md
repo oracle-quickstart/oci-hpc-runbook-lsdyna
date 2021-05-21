@@ -39,7 +39,7 @@ We suggest launching the [CFD Ready Cluster](https://cloudmarketplace.oracle.com
     5. If you need more than 6TB of Shared disk space, check GlusterFS and select how many servers you would need. (6TB per server)
 5.	Click <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/create.png" height="30">.
 6.	Navigate to *Terraform Actions* then click **Apply**. This will launch the CN provisioning.
-7.	Wait until the job shows ‘Succeeded’ then navigate to **Outputs** to obtain the bastion and compute node private IP’s. 
+7.	Wait until the job shows ‘Succeeded’ then navigate to <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/outputs.png" height="34"> to obtain the bastion and compute node private IP’s <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/bastion_private_ip.png" height="37">. 
 
 
 ## Creation of Cluster Network through Manual Configuration
@@ -108,7 +108,7 @@ sudo systemctl enable vncserver@:1.service
 
 ## Add a GPU instance.
 The below steps are taken Using OpenGL to Enhance GPU Use cases on OCI - refer to the blog for more details. 
-1.	Within the Console, navigate to Compute then Instances.
+1.	Within the Console, navigate to <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/compute.png" height="25"> then <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/instances.png" height="25">.
 2.	Create a Compute Instance for the Visualization Node:
 a.	Select the desired AD
 b.	Select the desired GPU shape (either VM or BM)
