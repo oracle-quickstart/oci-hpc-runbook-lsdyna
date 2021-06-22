@@ -124,13 +124,11 @@ sudo yum install -y intel-mpi-2018.4-057 intel-mpi-samples-2018.4-274
 ```
 	
 # Running LS-DYNA
-Running LS-DYNA is pretty straightforward.
 
 1. Ssh into your bastion host and create a private key using your license key in
 ```
 /nfs/cluster/lsdyna
 ```
-
 
 2. Set read permissions on the private key file by running this command
 ```
@@ -156,6 +154,4 @@ The output should look like this: <img src="https://github.com/oracle-quickstart
 ```
 and run this script https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/Resources/LSDYNA_3car.sh
 Please change the variables accordingly
-
-
 
