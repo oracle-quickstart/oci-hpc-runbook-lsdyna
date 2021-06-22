@@ -153,39 +153,7 @@ The output should look like this: <img src="https://github.com/oracle-quickstart
 /nfs/cluster/lsdyna/work
 ```
 and run this script https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/Resources/LSDYNA_3car.sh
+Please change the variables accordingly
 
-Make sure you have set all the right variables for mpi to run correctly. 
-Run it with the following command for Intel MPI (change the modelname and core number):
-```
-mpirun -np 256 -hostfile ./hostfile_rank \
--ppn 32 -iface enp94s0f0 -genv I_MPI_FABRICS=shm:dapl -genv DAT_OVERRIDE=/etc/dat.conf -genv I_MPI_DAT_LIBRARY=/usr/lib64/libdat2.so \
--genv I_MPI_DAPL_PROVIDER=ofa-v2-cma-roe-enp94s0f0 -genv I_MPI_FALLBACK=0 -genv I_MPI_DAPL_UD=0 -genv I_MPI_ADJUST_ALLREDUCE 5 -genv I_MPI_ADJUST_BCAST 1 -genv I_MPI_DEBUG=4 \
--genv I_MPI_PIN_PROCESSOR_LIST=0-35 -genv I_MPI_PROCESSOR_EXCLUDE_LIST=36-71 \
-/mnt/nfs-share/LSDYNA/ ls-dyna_mpp_s_r9_2_119543_x64_redhat54_ifort131_sse2_intelmpi-413 
-i=3cars_shell2_150ms.k \
-memory=1000m memory2=160m p=pfile
-```
- 
-For platform MPI: 
-```
-mpirun -np 256 -hostfile ./hostfile_rank -ppn 32 \ 
--d -v -prot -intra=shm -e MPI_FLAGS=y -e MPI_HASIC_UDAPL=ofa-v2-cma-roe-enp94s0f0 -UDAPL \
-/mnt/nfs-share/LSDYNA/ls-dyna_mpp_s_r9_2_119543_x64_redhat54_ifort131_sse2_platformmpi \
-i=3cars_shell2_150ms.k \
-memory=1000m memory2=160m p=pfile
-```
 
-## Special case
 
-For some model, Douple Precision executables will not be enough to do the decomposition of the model. You can either use the double precision version of the executable or you can do the decomposition in double precision and still do the run in single precision to gain speed. 
-			
-For the decomposition, add `ncycles=2` to the command line and add this part to the pfile: 	
-```
-decomposition {								
- file decomposition								
- rcblog rcblog								
-}
-```
-The model will be decomposed in a file called decomposition and stored in the directory of the model. During the second run, LS-Dyna will see this file and not redo the decomposition. 
-								
-For the run in Single precision, you can use the same commands in the pfile.
