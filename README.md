@@ -137,7 +137,9 @@ Running LS-DYNA is pretty straightforward.
 chmod 400 lysdyna_private_key
 ```
 
-3. Create a tunnel to your LS Dyna server. Example:
+3. Create a tunnel to your LS Dyna server on Node 1 
+
+Example:
 ```
 ssh -M -S control.socket -fnNT -i /nfs/cluster/lsdyna/lsdyna_private_key -L 31010:127.0.0.1:31010 opc@129.146.96.65
 ```
