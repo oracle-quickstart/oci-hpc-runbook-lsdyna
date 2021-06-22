@@ -193,22 +193,4 @@
       args:
         chdir: "{{cluster_nfs_path}}/lsdyna/work"
 
-    # - name: install intelmpi 2018 - wget key
-    #   get_url: 
-    #     url: "https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB"
-    #     dest: "{{cluster_nfs_path}}"
-
-    # - name: install intelmpi 2018 - import key
-    #   shell: "rpm --import GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB"
-      
-    # - name: install intelmpi 2018 - add repo
-    #   shell: "yum-config-manager --add-repo=https://yum.repos.intel.com/mpi"
-
-    # - name: install intelmpi 2018 - installation
-    #   shell: "yum install -y intel-mpi-2018.4-057 intel-mpi-samples-2018.4-274"
-
-    # - name: export to bashrc
-    #   shell: "echo source /opt/intel/compilers_and_libraries_2018.5.274/linux/mpi/intel64/bin/mpivars.sh | tee -a ~/.bashrc"
-
-    # - name: source
-    #   shell: "source ~/.bashrc"
+    
