@@ -723,7 +723,7 @@ variables:
     required: true
     type: string
     title: "LSDYNA binaries PAR"
-    default: "https://objectstorage.us-phoenix-1.oraclecloud.com/p/CTYjQPzf6YV_u7Nssb1ZILYmHj02DONigzx9nuTzXw1EXvcwhKovN8YYyTJrXF7V/n/hpc/b/HPC_APPS/o/LS-DYNA_R12.0.0_CentOS-65_AVX2_MPP_S.zip"
+    default: ""
   slurm:
     type: boolean
     title: "Install SLURM"
