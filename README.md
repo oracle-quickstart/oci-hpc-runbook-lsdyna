@@ -125,26 +125,35 @@ sudo yum install -y intel-mpi-2018.4-057 intel-mpi-samples-2018.4-274
 	
 # Running LS-DYNA
 Running LS-DYNA is pretty straightforward.
-To specify the host you need to run on, you need to create a machinefile. You can generate it as follow, or manually. Format is hostname:corenumber for both Platform and IntelMPI.
-```
-sed 's/$/:36/' /etc/opt/oci-hpc/hostfile > machinefile
-```
-Some run parameters can be specified by a parameter file: `pfile`
 
+1. Ssh into your bastion host and create a private key using your license key in
 ```
-gen { nodump nobeamout dboutonly }
-dir { global /mnt/nfs-share/benchmark/one_global_dir local /dev/shm }
+/nfs/cluster/lsdyna
 ```
 
-This particular pfile tells LSDyna not to dump to much information to the disk. Uses memory to store local files and store global files into `/mnt/nfs-share/benchmark/one_global_dir`.
 
-ANother place to store local files if it does not fit in the memory is `/mnt/localdisk/tmp` to use the local NVMe on the machine to store those files.
+2. Set read permissions on the private key file by running this command
+```
+chmod 400 lysdyna_private_key
+```
 
-To run on multiple nodes, place the model on the share drive (Ex:/mnt/nfs-share/work/).
-Example provided here is to run the 3 cars model. . You can add it to object storage like the installer and download it or scp it to the machine.
+3. Create a tunnel to your LS Dyna server. Example:
 ```
-wget https://objectstorage.us-phoenix-1.oraclecloud.com/p/qwbdhqwdhqh/n/tenancy/b/bucket/o/3cars_shell2_150ms.k
+ssh -M -S control.socket -fnNT -i /nfs/cluster/lsdyna/lsdyna_private_key -L 31010:127.0.0.1:31010 opc@129.146.96.65
 ```
+
+4. Check to make sure the tunnel is successful by running this command
+```
+ps ax | grep lsdyna
+```
+The output should look like this: <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Screen%20Shot%202021-06-22%20at%204.06.00%20PM.png?raw=true" height="35" >
+
+5. To run, navigate to 
+```
+/nfs/cluster/lsdyna/work
+```
+and run this script https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/Resources/LSDYNA_3car.sh
+
 Make sure you have set all the right variables for mpi to run correctly. 
 Run it with the following command for Intel MPI (change the modelname and core number):
 ```
