@@ -43,7 +43,7 @@ If you don't have the required permissions and quota, contact your tenancy admin
 Now, you'll want a local copy of this repo. You can make that with the commands:
 
     git clone https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna.git
-    cd oci-hpc-runbook-fluent
+    cd oci-hpc-runbook-lsdyna
     ls
 
 ### Set Up and Configure Terraform
@@ -58,10 +58,6 @@ tenancy_ocid         = "<tenancy_ocid>"
 user_ocid            = "<user_ocid>"
 fingerprint          = "<finger_print>"
 private_key_path     = "<pem_private_key_path>"
-
-# database
-ATP_password           = "<ATP_user_password>"
-ATP_data_guard_enabled = false # set the value to true only when you want to enable standby and then re-run terraform apply
 
 # Region
 region = "<oci_region>"
@@ -99,7 +95,7 @@ When you no longer need the deployment, you can run this command to destroy the 
     terraform destroy
     
 # Architecture
-![](https://github.com/oracle-quickstart/oci-hpc-runbook-fluent/blob/main/images/architecture-hpc.png "Architecture for Running StarCCM+ in OCI")
+![](https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/architecture-hpc.png "Architecture for Running StarCCM+ in OCI")
 The architecture for this runbook is as follow, we have one small machine (bastion) that you will connect into. The compute nodes will be on a separate private network linked with RDMA RoCE v2 networking. The bastion will be accesible through SSH from anyone with the key (or VNC if you decide to enable it). Compute nodes will only be accessible through the bastion inside the network. This is made possible with 1 Virtual Cloud Network with 2 subnets, one public and one private.
 
 The above baseline infrastructure provides the following specifications:
@@ -110,9 +106,11 @@ The above baseline infrastructure provides the following specifications:
     -	6.4 TB Local NVME SSD storage per node
     -	36 cores per node
     -	384 GB memory per node
+    
+# Upload LSDYNA binaries to Object Storage
 
-## Install MPI librairies
-### Intel MPI 2018
+
+# Install Intel MPI 2018 librairies
 
 Run those commands on every node. 
 ```
