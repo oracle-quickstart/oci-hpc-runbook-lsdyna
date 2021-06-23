@@ -108,7 +108,11 @@ The above baseline infrastructure provides the following specifications:
     -	384 GB memory per node
     
 # Upload LSDYNA binaries to Object Storage
+1. Log In
+You can start by logging in the Oracle Cloud console. If this is the first time, instructions to do so are available [here](https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/signingin.htm).
+Select the region in which you wish to create your Object Storage Bucket. Click on the current region in the top right dropdown list to select another one. 
 
+2. Go to Buckets by clicking on and selecting Storage > Buckets
 
 # Install Intel MPI 2018 librairies
 
