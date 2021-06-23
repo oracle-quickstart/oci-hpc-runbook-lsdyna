@@ -195,11 +195,10 @@ ps ax | grep lsdyna
 ```
 The output should look like this: <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Screen%20Shot%202021-06-22%20at%204.06.00%20PM.png?raw=true" height="35" >
 
-7. To run, navigate to 
+7. To run, navigate to and run this [script](https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/Resources/LSDYNA_3car.sh)
 ```
 /nfs/cluster/lsdyna/work
 ```
-and run this [script] (https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/Resources/LSDYNA_3car.sh)
 
 Please change the variable on `line 35` with your LSDYNA path:
 ```
