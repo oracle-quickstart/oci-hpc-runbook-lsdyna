@@ -161,14 +161,19 @@ sudo yum install -y intel-mpi-2018.4-057 intel-mpi-samples-2018.4-274
 	<p></p>
 </details>
 
-2. Ssh into your bastion host 
+2. SSH into your bastion host 
+```
+ssh -i PRIVATE KEY PATH opc@IP_ADDRESS
+```
+
+3. SSH into cluster
 ```
 ssh hpc-node-1
 ```
 
 3. Create a private key file - paste your license key into `lsdyna_private_key`
 ```
-/nfs/cluster/lsdyna
+cd /nfs/cluster/lsdyna
 vi lsdyna_private_key
 ```
 
@@ -181,7 +186,7 @@ chmod 400 lsdyna_private_key
 
 Example:
 ```
-ssh -M -S control.socket -fnNT -i /nfs/cluster/lsdyna/lsdyna_private_key -L 31010:127.0.0.1:31010 opc@129.146.96.65
+ssh -M -S control.socket -fnNT -i /nfs/cluster/lsdyna/lsdyna_private_key -L 31010:127.0.0.1:31010 opc@BASTION_IP_ADDRESS
 ```
 
 6. Check to make sure the tunnel is successful by running this command
