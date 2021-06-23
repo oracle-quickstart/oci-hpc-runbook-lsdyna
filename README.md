@@ -179,7 +179,7 @@ vi lsdyna_private_key
 
 4. Set read permissions on the private key file by running this command
 ```
-chmod 400 lsdyna_private_key
+chmod 600 lsdyna_private_key
 ```
 
 5. Create a tunnel to your LS Dyna server on Node 1 
