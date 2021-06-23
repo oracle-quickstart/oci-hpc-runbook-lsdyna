@@ -1,5 +1,5 @@
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates. All rights reserved.
-# Licensed under the Universal Permissive License v 1.0 as shown at http://oss.oracle.com/licenses/upl.
+## Copyright (c) 2020, Oracle and/or its affiliates.
+## All rights reserved. The Universal Permissive License (UPL), Version 1.0 as shown at http://oss.oracle.com/licenses/upl
 
 resource "random_pet" "name" {
   length = 2
@@ -69,5 +69,3 @@ data "oci_identity_region_subscriptions" "home_region_subscriptions" {
     values = [true]
   }
 }
-
-

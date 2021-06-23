@@ -1,5 +1,5 @@
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates. All rights reserved.
-# Licensed under the Universal Permissive License v 1.0 as shown at http://oss.oracle.com/licenses/upl.
+## Copyright (c) 2020, Oracle and/or its affiliates.
+## All rights reserved. The Universal Permissive License (UPL), Version 1.0 as shown at http://oss.oracle.com/licenses/upl
 
 resource "oci_file_storage_file_system" "FSS" {
   count               = var.create_ffs ? 1 : 0
@@ -16,6 +16,7 @@ resource "oci_file_storage_mount_target" "FSSMountTarget" {
   subnet_id           = local.subnet_id
   display_name        = "${local.cluster_name}-mt"
   hostname_label      = "fileserver"
+  defined_tags        = { "${oci_identity_tag_namespace.ArchitectureCenterTagNamespace.name}.${oci_identity_tag.ArchitectureCenterTag.name}" = var.release }
 }
 
 resource "oci_file_storage_export" "FSSExport" {

@@ -1,5 +1,5 @@
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates. All rights reserved.
-# Licensed under the Universal Permissive License v 1.0 as shown at http://oss.oracle.com/licenses/upl.
+## Copyright (c) 2020, Oracle and/or its affiliates.
+## All rights reserved. The Universal Permissive License (UPL), Version 1.0 as shown at http://oss.oracle.com/licenses/upl
 
 resource "oci_core_vcn" "vcn" {
   count          = var.use_existing_vcn ? 0 : 1
@@ -174,4 +174,5 @@ resource "oci_core_subnet" "private-subnet" {
   prohibit_public_ip_on_vnic = true
   route_table_id             = oci_core_route_table.private_route_table[0].id
   defined_tags               = { "${oci_identity_tag_namespace.ArchitectureCenterTagNamespace.name}.${oci_identity_tag.ArchitectureCenterTag.name}" = var.release }
+
 }

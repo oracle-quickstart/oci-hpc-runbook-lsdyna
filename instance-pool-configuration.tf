@@ -1,5 +1,5 @@
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates. All rights reserved.
-# Licensed under the Universal Permissive License v 1.0 as shown at http://oss.oracle.com/licenses/upl.
+## Copyright (c) 2020, Oracle and/or its affiliates.
+## All rights reserved. The Universal Permissive License (UPL), Version 1.0 as shown at http://oss.oracle.com/licenses/upl
 
 resource "oci_core_instance_configuration" "instance_pool_configuration" {
   count          = (!var.cluster_network) && (var.node_count > 0) ? 1 : 0

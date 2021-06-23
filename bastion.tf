@@ -1,5 +1,5 @@
-# Copyright (c) 2020, 2021 Oracle and/or its affiliates. All rights reserved.
-# Licensed under the Universal Permissive License v 1.0 as shown at http://oss.oracle.com/licenses/upl.
+## Copyright (c) 2020, Oracle and/or its affiliates.
+## All rights reserved. The Universal Permissive License (UPL), Version 1.0 as shown at http://oss.oracle.com/licenses/upl
 
 resource "oci_core_volume" "bastion_volume" {
   count               = var.bastion_block ? 1 : 0
@@ -57,6 +57,7 @@ resource "oci_core_instance" "bastion" {
   create_vnic_details {
     subnet_id = local.bastion_subnet_id
   }
+  defined_tags = { "${oci_identity_tag_namespace.ArchitectureCenterTagNamespace.name}.${oci_identity_tag.ArchitectureCenterTag.name}" = var.release }
 }
 
 resource "null_resource" "bastion" {
@@ -177,7 +178,6 @@ resource "null_resource" "cluster" {
       slurm               = var.slurm,
       spack               = var.spack,
       ldap                = var.ldap,
-      lsdyna_binaries     = var.lsdyna_binaries,
       bastion_block       = var.bastion_block,
       scratch_nfs_type    = local.scratch_nfs_type,
       bastion_mount_ip    = local.bastion_mount_ip,
