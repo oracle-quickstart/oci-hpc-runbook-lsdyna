@@ -174,6 +174,7 @@ resource "null_resource" "cluster" {
       nfs_source_IP       = local.nfs_source_IP,
       nfs_source_path     = var.nfs_source_path,
       nfs_options         = var.nfs_options,
+      lsdyna_binaries = var.lsdyna_binaries,
       cluster_network     = var.cluster_network,
       slurm               = var.slurm,
       spack               = var.spack,
