@@ -147,36 +147,50 @@ sudo yum install -y intel-mpi-2018.4-057 intel-mpi-samples-2018.4-274
 	
 # Running LS-DYNA
 
-1. Ssh into your bastion host 
+1. Navigate to Bastion - Find the public IP address of your remote host after the deployment job has finished:
+<details>
+	<summary>Resource Manager</summary>
+	<p></p>
+	If you deployed your stack via Resource Manager, find the public IP address of the compute node at the bottom of the CLI console logs.
+	<p></p>
+</details>
+<details>
+	<summary>Command Line</summary>
+	<p></p>
+	If you deployed your stack via Command Line, find the public IP address of the compute node at the bottom of the console logs on the <b>Logs</b> page, or on the <b>Outputs</b> page.
+	<p></p>
+</details>
+
+2. Ssh into your bastion host 
 ```
 ssh hpc-node-1
 ```
 
-2. Create a private key file - paste your license key into `lsdyna_private_key`
+3. Create a private key file - paste your license key into `lsdyna_private_key`
 ```
 /nfs/cluster/lsdyna
 vi lsdyna_private_key
 ```
 
-3. Set read permissions on the private key file by running this command
+4. Set read permissions on the private key file by running this command
 ```
 chmod 400 lsdyna_private_key
 ```
 
-4. Create a tunnel to your LS Dyna server on Node 1 
+5. Create a tunnel to your LS Dyna server on Node 1 
 
 Example:
 ```
 ssh -M -S control.socket -fnNT -i /nfs/cluster/lsdyna/lsdyna_private_key -L 31010:127.0.0.1:31010 opc@129.146.96.65
 ```
 
-5. Check to make sure the tunnel is successful by running this command
+6. Check to make sure the tunnel is successful by running this command
 ```
 ps ax | grep lsdyna
 ```
 The output should look like this: <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Screen%20Shot%202021-06-22%20at%204.06.00%20PM.png?raw=true" height="35" >
 
-6. To run, navigate to 
+7. To run, navigate to 
 ```
 /nfs/cluster/lsdyna/work
 ```
