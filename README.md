@@ -200,5 +200,6 @@ The output should look like this: <img src="https://github.com/oracle-quickstart
 /nfs/cluster/lsdyna/work
 ```
 and run this script https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/Resources/LSDYNA_3car.sh
-Please change the variables accordingly
+Please change the variable on line 35 accordingly.
+LSDYNA_EXE="/nfs/cluster/lsdyna/install/LS-DYNA_R12.0.0_CentOS-65_AVX2_MPP_S/ls-dyna_mpp_s_R12_0_0_x64_centos65_ifort160_avx2_intelmpi-2018" ##replace with your LSDYNA path
 
