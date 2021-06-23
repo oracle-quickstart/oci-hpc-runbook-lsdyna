@@ -147,9 +147,10 @@ sudo yum install -y intel-mpi-2018.4-057 intel-mpi-samples-2018.4-274
 	
 # Running LS-DYNA
 
-1. Ssh into your bastion host and create a private key - paste your license key into `lsdyna_private_key`
+1. Ssh into your bastion host and create a private key file. Then paste your license key into `lsdyna_private_key`
 ```
 /nfs/cluster/lsdyna
+nano lsdyna_private_key
 vi lsdyna_private_key
 ```
 
