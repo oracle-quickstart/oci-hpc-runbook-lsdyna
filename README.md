@@ -199,6 +199,12 @@ The output should look like this: <img src="https://github.com/oracle-quickstart
 ```
 /nfs/cluster/lsdyna/work
 ```
+Be sure to set execution permission before running the script.
+
+Example:
+```
+chmod +x script.sh
+```
 
 Please change the variable on `line 35` with your LSDYNA path:
 ```
