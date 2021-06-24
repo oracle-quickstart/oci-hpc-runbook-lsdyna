@@ -110,10 +110,30 @@ The above baseline infrastructure provides the following specifications:
     
 # Upload LSDYNA binaries to Object Storage
 1. Log In
+
 You can start by logging in the Oracle Cloud console. If this is the first time, instructions to do so are available [here](https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/signingin.htm).
 Select the region in which you wish to create your Object Storage Bucket. Click on the current region in the top right dropdown list to select another one. 
 
-2. Go to Buckets by clicking on and selecting Storage > Buckets
+2. Go to Buckets by clicking on  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/menu.png?raw=true" height="30">  and selecting **Storage**  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Storage%20option.png?raw=true" height="70">  > **Buckets**  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Buckets.png?raw=true" height="40">
+
+3. Create a bucket by clicking  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Create%20bucket.png?raw=true" height="30">. Give your bucket a name and select the storage tier and encryption.
+
+4. Once the bucket has been created, upload an object (binary) to the bucket by clicking **Upload**  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Upload%20Object.png?raw=true" height="50">  under **Objects**.
+
+5. Create a Pre-Authenitcated Request (PAR) using the following steps:
+
+	- Click on  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/par%20menu.png?raw=true" height="40">  for the object, then select  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Create%20PAR%20button%20from%20menu.png?raw=true" height="30"> 
+
+	- Select  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Object%20option%20PAR%20menu.png?raw=true" height="40">  for the **Pre-Authenticated Request Target** and then select an access type.
+
+	- Click  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Create%20PAR.png?raw=true" height="30">
+
+	- Be sure to copy the PAR URL by clicking <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Copy.png?raw=true" height="30"> before closing because you will **NOT** have access to the URL again. 
+
+
+
+6. Add this PAR to the lsdyna_binaries variable.
+
 
 # Install Intel MPI 2018 librairies
 
@@ -128,34 +148,67 @@ sudo yum install -y intel-mpi-2018.4-057 intel-mpi-samples-2018.4-274
 	
 # Running LS-DYNA
 
-1. Ssh into your bastion host and create a private key - paste your license key into `lsdyna_private_key`
+1. Navigate to Bastion - Find the public IP address of your remote host after the deployment job has finished:
+<details>
+	<summary>Resource Manager</summary>
+	<p></p>
+	If you deployed your stack via Resource Manager, find the public IP address of the compute node at the bottom of the CLI console logs.
+	<p></p>
+</details>
+<details>
+	<summary>Command Line</summary>
+	<p></p>
+	If you deployed your stack via Command Line, find the public IP address of the compute node at the bottom of the console logs on the <b>Logs</b> page, or on the <b>Outputs</b> page.
+	<p></p>
+</details>
+
+2. SSH into your bastion host 
 ```
-/nfs/cluster/lsdyna
+ssh -i PRIVATE KEY PATH opc@IP_ADDRESS
+```
+
+3. SSH into cluster
+```
+ssh hpc-node-1
+```
+
+3. Create a private key file - paste your license key into `lsdyna_private_key`
+```
+cd /nfs/cluster/lsdyna
 vi lsdyna_private_key
 ```
 
-2. Set read permissions on the private key file by running this command
+4. Set read permissions on the private key file by running this command
 ```
-chmod 400 lysdyna_private_key
+chmod 600 lsdyna_private_key
 ```
 
-3. Create a tunnel to your LS Dyna server on Node 1 
+5. Create a tunnel to your LS Dyna server on Node 1 
 
 Example:
 ```
-ssh -M -S control.socket -fnNT -i /nfs/cluster/lsdyna/lsdyna_private_key -L 31010:127.0.0.1:31010 opc@129.146.96.65
+ssh -M -S control.socket -fnNT -i /nfs/cluster/lsdyna/lsdyna_private_key -L 31010:127.0.0.1:31010 opc@BASTION_IP_ADDRESS
 ```
 
-4. Check to make sure the tunnel is successful by running this command
+6. Check to make sure the tunnel is successful by running this command
 ```
 ps ax | grep lsdyna
 ```
 The output should look like this: <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Screen%20Shot%202021-06-22%20at%204.06.00%20PM.png?raw=true" height="35" >
 
-5. To run, navigate to 
+7. To run, navigate to and run this [script](https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/Resources/LSDYNA_3car.sh)
 ```
 /nfs/cluster/lsdyna/work
 ```
-and run this script https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/Resources/LSDYNA_3car.sh
-Please change the variables accordingly
+Be sure to set execution permission before running the script.
+
+Example:
+```
+chmod +x script.sh
+```
+
+Please change the variable on `line 35` with your LSDYNA path:
+```
+LSDYNA_EXE="/nfs/cluster/lsdyna/install/LS-DYNA_R12.0.0_CentOS-65_AVX2_MPP_S/ls-dyna_mpp_s_R12_0_0_x64_centos65_ifort160_avx2_intelmpi-2018"
+```
 
