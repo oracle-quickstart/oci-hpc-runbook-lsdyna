@@ -4,7 +4,7 @@ title: LSDYNA on Oracle Cloud Infrastructure
 description: Running LSDYNA on Oracle Cloud HPC cluster
 schemaVersion: 1.1.0
 version: "2021040901"
-informationalText: Automated HPC cluster deployment
+informationalText: Running LSDYNA on Oracle Cloud HPC cluster
 logoUrl: https://cloudmarketplace.oracle.com/marketplace/content?contentId=80357668
 
 source:
@@ -345,6 +345,12 @@ variables:
       and:
         - ${bastion_advanced}
     default: true
+  release:
+    type: string
+    required: false
+    visible: false
+    title: "Reference Architecture Release (OCI Architecture Center)"
+  
   cluster_nfs_path:
     title: "Cluster share mount point"
     description: "Path to NFS share"

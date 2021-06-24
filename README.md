@@ -79,6 +79,7 @@ use_marketplace_image    = true
 use_standard_image       = true
 cluster_network          = false
 instance_pool_shape      = "<instance_pool_shape>" # for example VM.Standard.E3.Flex
+lsdyna_binaries          = "<lsdyna_binaries>" # for example https://objectstorage.us-phoenix-1.oraclecloud.com/p/CTYj(...)F7V/n/hpc/b/HPC_APPS/o/LS-DYNA_R12.0.0_CentOS-65_AVX2_MPP_S.zip"
 
 ````
 
