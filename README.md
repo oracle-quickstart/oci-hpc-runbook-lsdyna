@@ -200,7 +200,7 @@ The output should look like this: <img src="https://github.com/oracle-quickstart
 ```
 /nfs/cluster/lsdyna/work
 ```
-Be sure to set execution permission before running the script.
+Be sure to set execution permission before running the [script](https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/Resources/LSDYNA_3car.sh).
 
 Example:
 ```
