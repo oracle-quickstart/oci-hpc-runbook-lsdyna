@@ -114,26 +114,23 @@ The above baseline infrastructure provides the following specifications:
 You can start by logging in the Oracle Cloud console. If this is the first time, instructions to do so are available [here](https://docs.cloud.oracle.com/iaas/Content/GSG/Tasks/signingin.htm).
 Select the region in which you wish to create your Object Storage Bucket. Click on the current region in the top right dropdown list to select another one. 
 
-2. Go to Buckets by clicking on  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/menu.png?raw=true" height="30">  and selecting **Storage**  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Storage%20option.png?raw=true" height="70">  > **Buckets**  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Buckets.png?raw=true" height="40">
+2. Go to Buckets by clicking on  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/menu.png?raw=true" height="30">  and selecting **Storage**  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Storage%20option.png?raw=true" height="130">  > **Buckets**  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Buckets.png?raw=true" height="70">
 
 3. Create a bucket by clicking  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Create%20bucket.png?raw=true" height="30">. Give your bucket a name and select the storage tier and encryption.
 
-4. Once the bucket has been created, upload an object (binary) to the bucket by clicking **Upload**  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Upload%20Object.png?raw=true" height="50">  under **Objects**.
+4. Once the bucket has been created, upload an object (binary) to the bucket by clicking **Upload**  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Upload%20Object.png?raw=true" height="90">  under **Objects**.
 
 5. Create a Pre-Authenitcated Request (PAR) using the following steps:
 
 	- Click on  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/par%20menu.png?raw=true" height="40">  for the object, then select  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Create%20PAR%20button%20from%20menu.png?raw=true" height="30"> 
 
-	- Select  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Object%20option%20PAR%20menu.png?raw=true" height="40">  for the **Pre-Authenticated Request Target** and then select an access type.
+	- Select  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Object%20option%20PAR%20menu.png?raw=true" height="100">  for the **Pre-Authenticated Request Target** and then select an access type.
 
 	- Click  <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Create%20PAR.png?raw=true" height="30">
 
-	- Be sure to copy the PAR URL by clicking <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Copy.png?raw=true" height="30"> before closing because you will **NOT** have access to the URL again. 
-
-
+	- Be sure to copy the PAR URL by clicking <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/Copy.png?raw=true" height="30"> before closing because you will **NOT** have access to the URL again.  
 
 6. Add this PAR to the lsdyna_binaries variable.
-
 
 # Install Intel MPI 2018 librairies
 
