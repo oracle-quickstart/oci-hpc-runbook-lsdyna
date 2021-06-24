@@ -62,12 +62,10 @@ if [ $INSTANCE=='BM.HPC2.36' ]; then
 else
         MPI_FLAGS=""
 fi
-echo "part4"
 
  
 #GET MPI VERSION:
 MPI_VERSION=`mpirun -version | awk 'NR==1'`
-echo "part5"
 
  
 #SET MODEL PARAMETERS:
@@ -133,13 +131,6 @@ neon)
         echo $0: unknown LSDYNA test $LSDYNA, valid choices are 3cars, car2car, odb10m, odb10m-10ms, odb10m-30ms, neon.
         usage 3
 esac
-echo "part7"
-
- 
-#CREATE CSV FILE TO HOLD RESULTS
-csv_file="LSDYNA_"$dt".csv"
-echo "uniqueid,application,model,application name,instance,hostname,nodes,ppn,cores,cells,metric,speedup,cellscore,scaling,network,notes,rundate,mpi_vers,mpi_name,mpi_version_number,ofed_vers,os_vers,kernel_vers,hpc_tools_vers,image_vers,command line,model_vers,region,environment,customer_name,poc" > $csv_file
-echo "part8"
 
  
 #SET INITIAL RUN VARIABLES
@@ -147,7 +138,7 @@ uid=`uuidgen | cut -c-8`
 base_elapsed=0
 base_elapsed_per_core=0
 base_cores=0
-echo "part9"
+
 
 UNIQUEID="" #choose your own uniqueid
  
@@ -163,7 +154,7 @@ for NODES in $NODES_ITER; do
     else
         MPI_CMD="mpirun -hostfile $MACHINEFILE -np $CORES $MPI_FLAGS"
     fi
-    echo "part10"
+
 
  
     MPI_ARGS="$LSDYNA_EXE $memory_param i=$K_FILE p=$P_FILE $ENDTIME"
@@ -171,7 +162,6 @@ for NODES in $NODES_ITER; do
     echo $0: `date`: MPI_ARGS=\"$MPI_ARGS\"
     echo $0: `date`: $MPI_CMD $MPI_ARGS
     $MPI_CMD $MPI_ARGS > $dynalog 2>&1
-    echo "part11"
 
  
     __status=$?
@@ -180,7 +170,6 @@ for NODES in $NODES_ITER; do
        echo $0: `date`: run $dt bench $LSDYNA_EXE vers with $ppn ppn, $nodes nodes, $cores cores, log to $dynalog: status $__status
        continue
     fi
-    echo "part12"
     #
         #get results
     #
@@ -191,14 +180,11 @@ for NODES in $NODES_ITER; do
         echo $0: `date`: run $dt bench $LSDYNA_EXE vers with $PPN ppn, $NODES nodes, $CORES cores, log to $dynalog: error termination
         continue
     fi
-    echo "part13"
 
  
     echo $0: `date`: finished run $dt bench $LSDYNA_EXE vers $VERS with $PPN ppn, $NODES nodes, $CORES cores, log to $dynalog
-    echo "part14"
  
     ELAPSED_TIME=`fgrep --binary-files=text "Elapsed" $dynalog  | awk '{print $3;}'`
-    echo "part15"
  
     if [ $base_elapsed -eq 0 ]
     then
@@ -206,13 +192,11 @@ for NODES in $NODES_ITER; do
         base_elapsed_per_core=`echo "scale=2 ; $ELAPSED_TIME * $CORES" | bc`
         base_cores=$CORES
     fi
-    echo "part16"
  
     CELLSCORE=`echo "scale=2; $CELLS / $CORES" | bc`
     SPEEDUP=`echo "scale=2; $base_elapsed_per_core / $ELAPSED_TIME" | bc`
     ELAPSED_PER_CORE=`echo "scale=2 ; $ELAPSED_TIME * $CORES" | bc`
     SCALING=`echo "scale=2; $SPEEDUP / $CORES" | bc`
-    echo "part17"
 
         echo $COMMENT
         echo $dt
@@ -220,13 +204,9 @@ for NODES in $NODES_ITER; do
         echo $MPI_NAME
         echo $OFED_VERS
         echo $POC
-
-        echo "part19"
  
     sleep 10
-    echo "$UNIQUEID,LSDYNA,$MODELNAME,$VERS,$INSTANCE,$HOSTNAME,$NODES,$PPN,$CORES,$CELLS,$ELAPSED_TIME,$SPEEDUP,$CELLSCORE,$SCALING,$NETWORK,\"$COMMENT\",$dt,$MPI_VERSION,$MPI_NAME,$OFED_VERS,$OS_VERS,$KERNEL_VERS,$HPC_TOOLS_VERS,$IMAGE_VERS,\"$MPI_CMD $MPI_ARGS\",$MODEL_VERS,$REGION,$ENVIRONMENT,$CUSTOMER_NAME,$POC" >> $csv_file
  
 done
-echo "part20"
 
 
