@@ -149,7 +149,7 @@ base_elapsed_per_core=0
 base_cores=0
 echo "part9"
 
-UNIQUEID="04-26-21-BM.HPC2.36-MarcinX9-lsdyna-12-avx2-3cars-intelmpi-2018-Run1"
+UNIQUEID="" #choose your own uniqueid
  
 #START THE RUN
 for NODES in $NODES_ITER; do
