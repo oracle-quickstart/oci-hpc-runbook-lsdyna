@@ -3,7 +3,7 @@
 # Introduction
 This Runbook will take you through the process of deploying an LS Dyna cluster on Oracle Cloud with low latency networking between the compute nodes. Running LS Dyna on Oracle Cloud is quite straightforward, follow along this guide for all the tips and tricks.
 
-LS-DYNA is a general-purpose finite element program capable of simulating complex real world problems. It is used by the automobile, aerospace, construction, military, manufacturing, and bioengineering industries. [LS-DYNA Website](https://www.lstc.com/products/ls-dyna)
+LS-DYNA is a general-purpose simulation program capable of simulating the response of materials, severe loading, by allowing users to control all details of their problem. This application is used in several industries including automotive, aerospace, construction, military, manufacturing, and bioengineering industries.[LS-DYNA Website](https://www.lstc.com/products/ls-dyna)
 
 <p align="center">
 <img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/master/3cars.jpg" height="200" >
