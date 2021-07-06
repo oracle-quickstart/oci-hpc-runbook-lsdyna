@@ -94,7 +94,7 @@ When you no longer need the deployment, you can run this command to destroy the 
     terraform destroy
     
 # Architecture
-![](https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/images/architecture-hpc.png "Architecture for Running LSDYNA in OCI")
+![](https://github.com/oracle-quickstart/oci-hpc-runbook-fluent/blob/main/images/architecture-hpc.png "Architecture for Running LSDYNA in OCI")
 The architecture for this runbook is as follow, we have one small machine (bastion) that you will connect into. The compute nodes will be on a separate private network linked with RDMA RoCE v2 networking. The bastion will be accesible through SSH from anyone with the key (or VNC if you decide to enable it). Compute nodes will only be accessible through the bastion inside the network. This is made possible with 1 Virtual Cloud Network with 2 subnets, one public and one private.
 
 The above baseline infrastructure provides the following specifications:
@@ -105,7 +105,7 @@ The above baseline infrastructure provides the following specifications:
     -	6.4 TB Local NVME SSD storage per node
     -	36 cores per node
     -	384 GB memory per node
-    
+
 # Upload LSDYNA binaries to Object Storage
 1. Log In
 
