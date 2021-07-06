@@ -5,9 +5,11 @@ This Runbook will take you through the process of deploying an LS Dyna cluster o
 
 LS-DYNA is a general-purpose finite element program capable of simulating complex real world problems. It is used by the automobile, aerospace, construction, military, manufacturing, and bioengineering industries. [LS-DYNA Website](https://www.lstc.com/products/ls-dyna)
 
-<p align="center">
-<img src="https://github.com/oci-hpc/oci-hpc-runbook-lsdyna/blob/master/3cars.jpg" height="200" >
- </p>
+For details of the architecture, see [_High Performance Computing: LS-DYNA on Oracle Cloud Infrastructure_](https://docs.oracle.com/en/solutions/hpc-lsdyna/index.html)
+
+## Architecture Diagram
+
+![](./images/lsdyna_architecture.png)
 
 ## Prerequisites
 
