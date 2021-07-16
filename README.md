@@ -1,4 +1,4 @@
-# <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/blob/main/lsdyna_logo.png" height="60"> LS-DYNA Runbook
+# <img src="https://github.com/oracle-quickstart/oci-hpc-runbook-lsdyna/raw/main/images/lsdyna_logo.png" height="60"> LS-DYNA Runbook
 
 # Introduction
 This Runbook will take you through the process of deploying an LS Dyna cluster on Oracle Cloud with low latency networking between the compute nodes. Running LS Dyna on Oracle Cloud is quite straightforward, follow along this guide for all the tips and tricks.
