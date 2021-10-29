@@ -882,3 +882,8 @@ variables:
         - ${add_nfs} 
         - not:
           - ${create_ffs}
+  release:
+    type: string
+    required: false
+    visible: false
+    title: "Reference Architecture Release (OCI Architecture Center)"
