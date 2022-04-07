@@ -1,3 +1,4 @@
+
 - hosts: compute
   become: true
   vars: 
@@ -86,8 +87,6 @@
       when: cluster_nfs|default(true)|bool
     - include_role: 
         name: mysql
-    - include_role: 
-        name: cron
       
 - hosts: nfs
   become: true
@@ -158,7 +157,6 @@
   tasks: 
     - include_role: 
         name: hyperthreading
-      when: not hyperthreading|default(true)|bool
 
 - hosts: bastion
   tasks: 
@@ -168,29 +166,36 @@
     - include_role: 
         name: grafana
       when: monitoring|default(false)|bool
-    - include_role:
+    - include_role: 
         name: lsdyna
 
+- hosts: bastion
+  tasks:
+    - include_role: 
+        name: yaml
+      when: slurm|default(false)|bool    
+    - include_role: 
+        name: autoscaling_mon
+      when: autoscaling_monitoring|default(false)|bool and autoscaling|default(false)|bool
+    - include_role: 
+        name: cron
+      
 - hosts: all
-  become: true
   vars:
     destroy: false
     initial: true
     download_path: "{{ '/nfs/cluster/' if cluster_nfs|bool else '/tmp' }}"
+  vars_files:
+    - "/opt/oci-hpc/autoscaling/queues.conf"
   tasks: 
     - include_role: 
         name: spack
       when: spack|default(false)|bool
     - include_role: 
-        name: slurm
-      when: slurm|default(false)|bool
-    - include_role: 
         name: telegraf
       when: monitoring|default(false)|bool
-
-    - name: create machinefile
-      shell: "sed 's/$/:36/' /etc/opt/oci-hpc/hostfile > machinefile"
-      args:
-        chdir: "{{cluster_nfs_path}}/lsdyna/work"
-
+    - include_role: 
+        name: slurm
+      when: slurm|default(false)|bool
     
+
