@@ -1,8 +1,11 @@
 ## Copyright © 2022, Oracle and/or its affiliates. 
 ## All rights reserved. The Universal Permissive License (UPL), Version 1.0 as shown at http://oss.oracle.com/licenses/upl
 
+variable "tenancy_ocid" {}
 variable "region" {}
-variable "tenancy_ocid" {} 
+variable "fingerprint" {}
+variable "user_ocid" {}
+variable "private_key_path" {}
 variable "targetCompartment" {} 
 variable "ad" {}
 variable "ssh_key" { }
